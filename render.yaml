@@ -1,0 +1,4 @@
+services:
+  - type: web
+    name: issue-tracker-app
+    startCommand: npm start --port 3000
