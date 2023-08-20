@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //to store the list of issues
 let issues = [];
 
-//define routes
+// define routes
 app.get('/', (req, res) => {
   res.render('index', { issues });
 });
