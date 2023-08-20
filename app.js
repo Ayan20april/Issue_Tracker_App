@@ -1,49 +1,48 @@
 const express = require('express');
-const path = require('path');
 const bodyParser = require('body-parser');
-
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Sample data store for issues
 let issues = [];
 
 app.get('/', (req, res) => {
-    res.render('index', { issues });
+  res.render('index', { issues });
 });
 
 app.get('/issue/:id', (req, res) => {
-    const id = req.params.id;
-    const issue = issues.find(issue => issue.id === id);
-    res.render('issue', { issue });
-});
-
-app.get('/create', (req, res) => {
-    res.render('create');
+  const issueId = req.params.id;
+  const issue = issues.find(issue => issue.id === parseInt(issueId));
+  res.render('issue', { issue });
 });
 
 app.post('/create', (req, res) => {
-    const { title, description } = req.body;
-    const id = Date.now().toString(); // Simplified unique ID generation
+  const { title, description } = req.body;
+  const id = issues.length + 1;
+  const newIssue = { id, title, description, status: 'Open' };
+  issues.push(newIssue);
+  res.redirect('/');
+});
 
-    const newIssue = {
-        id,
-        title,
-        description,
-        status: 'Open'
-    };
+app.post('/update/:id', (req, res) => {
+  const issueId = parseInt(req.params.id);
+  const { status } = req.body;
+  const issue = issues.find(issue => issue.id === issueId);
+  if (issue) {
+    issue.status = status;
+  }
+  res.redirect(`/issue/${issueId}`);
+});
 
-    issues.push(newIssue);
-    res.redirect('/');
+app.post('/delete/:id', (req, res) => {
+  const issueId = parseInt(req.params.id);
+  issues = issues.filter(issue => issue.id !== issueId);
+  res.redirect('/');
 });
 
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+  console.log(`Issue tracker app is running on http://localhost:${port}`);
 });
-
