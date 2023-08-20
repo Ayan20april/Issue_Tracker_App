@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title><%= issue.title %> - Issue Tracker</title>
-    <link rel="stylesheet" type="text/css" href="/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Issue Details</title>
 </head>
 <body>
-    <h1><%= issue.title %></h1>
-    <p>Status: <%= issue.status %></p>
-    <p><%= issue.description %></p>
+  <h1><%= issue.title %></h1>
+  <p>Status: <%= issue.status %></p>
+  <p><%= issue.description %></p>
+  <form action="/update/<%= issue.id %>" method="post">
+    <label for="status">Update Status:</label>
+    <select name="status" id="status">
+      <option value="Open">Open</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Resolved">Resolved</option>
+    </select>
+    <button type="submit">Update</button>
+  </form>
 </body>
 </html>
