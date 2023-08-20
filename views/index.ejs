@@ -8,8 +8,12 @@
 </head>
 <body>
   <h1>Issue Tracker</h1>
+
+  //takes the user to the "Create New Issue" page. It's a hyperlink that leads to the /create route.
   <a href="/create">Create New Issue</a>
   <ul>
+
+    //This is an embedded JavaScript code block that iterates through the issues array and generates HTML for each issue.
     <% issues.forEach(issue => { %>
       <li>
         <a href="/issue/<%= issue.id %>"><%= issue.title %></a>
