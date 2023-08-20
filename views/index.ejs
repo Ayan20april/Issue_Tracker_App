@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Issue Tracker</title>
+</head>
+<body>
+  <h1>Issue Tracker</h1>
+  <a href="/create">Create New Issue</a>
+  <ul>
+    <% issues.forEach(issue => { %>
+      <li>
+        <a href="/issue/<%= issue.id %>"><%= issue.title %></a>
+        <form action="/delete/<%= issue.id %>" method="post" style="display: inline;">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
