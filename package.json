@@ -1,16 +1,16 @@
 {
-  "name": "Issue-Tracker-App",
+  "name": "issue-tracker-app",
   "version": "1.0.0",
-  "description": "A simple issue tracker application using Node.js and EJS",
+  "description": "A simple Node.js + EJS issue tracker application",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "build": "webpack --config webpack.config.js"
+    "start": "node app.js"
   },
   "dependencies": {
-    "author": "Ayan Mahanta",
     "express": "^4.17.1",
     "ejs": "^3.1.6",
     "body-parser": "^1.19.0"
-  }
+  },
+  "author": "Ayan Mahanta",
+  "license": "MIT"
 }
