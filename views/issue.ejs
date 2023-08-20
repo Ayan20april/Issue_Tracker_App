@@ -10,6 +10,9 @@
   <h1><%= issue.title %></h1>
   <p>Status: <%= issue.status %></p>
   <p><%= issue.description %></p>
+
+  //This creates a form for updating the status of the issue. 
+  //The form submits a POST request to the '/update' route with the corresponding issue ID as a parameter.
   <form action="/update/<%= issue.id %>" method="post">
     <label for="status">Update Status:</label>
     <select name="status" id="status">
